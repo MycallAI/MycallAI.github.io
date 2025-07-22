@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mycalla Inc. - Our Projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-color: #003366; /* Dark Blue */
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+        .modal.hidden .modal-content {
+            transform: scale(0.95);
+        }
+        /* Custom scrollbar for modal if content overflows */
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-700">Mycalla Inc.</a>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#home" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a></li>
+                    <li><a href="#mission" class="text-gray-600 hover:text-blue-600 transition duration-300">Our Mission</a></li>
+                    <li><a href="#projects" class="text-gray-600 hover:text-blue-600 transition duration-300">Projects</a></li>
+                    <li><a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Empowering Puerto Rico Through Connection</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">Mycalla Inc. is dedicated to delivering innovative and reliable communication solutions, bridging gaps and fostering a more connected, informed, and prosperous future for the island.</p>
+            <a href="#projects" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 text-lg">Explore Our Projects</a>
+        </div>
+    </section>
+
+    <section id="mission" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-4 text-blue-700">Our Mission</h2>
+            <p class="text-center text-gray-700 mb-10 max-w-3xl mx-auto">
+                Mycalla Inc. is a for-profit entity whose purpose is to empower and connect the people of Puerto Rico through innovative and reliable communication solutions. We are committed to bridging gaps, fostering collaboration, and enhancing the quality of life for individuals and businesses across the island. Mycalla Inc. aims to be the leading force in transforming communication experiences in Puerto Rico by leveraging cutting-edge technology, fostering local partnerships, and prioritizing customer satisfaction. Our vision is to create a more connected, informed, and prosperous community, driving positive social and economic impact for the people we serve.
+            </p>
+        </div>
+    </section>
+
+    <section id="projects" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-700">Our Projects</h2>
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-gray-200">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-blue-700 mb-6">Get in Touch</h2>
+            <p class="text-gray-700 mb-4">Interested in learning more about our projects or partnering with us?</p>
+            <p class="text-gray-700 font-semibold">Email: <a href="mailto:mail.shobbs+infoatmycallainc@gmail.com" class="text-blue-600 hover:underline">mail.shobbs+infoatmycallainc@gmail.com</a></p>
+            <p class="text-gray-700 font-semibold">Phone: <a href="tel:+1-408-782-4204" class="text-blue-600 hover:underline">(408) 782-4204</a> </p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; <span id="currentYear"></span> Mycalla Inc. All rights reserved.</p>
+            <p>Trujillo Alto, Puerto Rico</p>
+        </div>
+    </footer>
+
+    <div id="projectModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden z-[100]">
+        <div class="modal-content bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col transform scale-100">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 id="modalTitle" class="text-2xl font-semibold text-blue-700">Project Title</h3>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+            <div class="modal-body p-6 overflow-y-auto">
+                <img id="modalImage" src="https://placehold.co/600x300/003366/FFFFFF?text=Project+Image" alt="Project Image" class="w-full h-auto object-cover rounded-md mb-6 max-h-64">
+                <p id="modalDescription" class="text-gray-700 mb-4">Detailed project description...</p>
+                <div class="mb-4">
+                    <h4 class="font-semibold text-gray-800">Status:</h4>
+                    <p id="modalStatus" class="text-gray-600"></p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-800">Impact:</h4>
+                    <p id="modalImpact" class="text-gray-600"></p>
+                </div>
+                 <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Technologies Used:</h4>
+                    <p id="modalTechnologies" class="text-gray-600"></p>
+                </div>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Partners:</h4>
+                    <p id="modalPartners" class="text-gray-600"></p>
+                </div>
+            </div>
+            <div class="p-6 border-t border-gray-200 bg-gray-50 text-right">
+                 <button id="closeModalFooter" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample Project Data
+        const projects = [
+            {
+                id: 1,
+                title: "ConectaComunidad: Rural Broadband Initiative",
+                shortDescription: "Deploying high-speed internet in underserved rural municipalities to bridge the digital divide.",
+                longDescription: "This initiative focuses on extending fiber optic networks and establishing fixed wireless access points in remote areas of Puerto Rico. Our goal is to ensure every community has reliable access to the digital world for education, healthcare, and economic opportunities.",
+                image: "https://placehold.co/600x400/1E40AF/FFFFFF?text=ConectaComunidad",
+                status: "Ongoing",
+                impact: "Increased internet penetration by 15% in pilot communities, enabling over 500 students to access online learning resources and facilitating telehealth consultations for 200+ residents.",
+                technologies: "Fiber Optics, Fixed Wireless Access (FWA), Network Monitoring Systems",
+                partners: "Local Municipal Governments, Community Leaders, Educational Institutions"
+            },
+            {
+                id: 2,
+                title: "IslaConectada: 5G Network Expansion",
+                shortDescription: "Upgrading cellular infrastructure to deliver 5G connectivity across key urban and commercial zones.",
+                longDescription: "Mycalla Inc. is at the forefront of bringing next-generation 5G technology to Puerto Rico. This project involves upgrading existing cell towers and deploying new small cells to provide ultra-fast, low-latency mobile connectivity, paving the way for smart city applications and IoT innovation.",
+                image: "https://placehold.co/600x400/059669/FFFFFF?text=IslaConectada+5G",
+                status: "Phase 2 Underway",
+                impact: "Enhanced mobile broadband speeds by up to 10x in deployed areas. Supporting development of 3 new smart city pilot programs and attracting tech startups.",
+                technologies: "5G NR, Small Cells, Edge Computing, Network Slicing",
+                partners: "Technology Providers, Urban Planners, Business Associations"
+            },
+            {
+                id: 3,
+                title: "FuerzaDigital: Digital Literacy Program",
+                shortDescription: "Partnering with local centers to provide digital literacy training for all age groups.",
+                longDescription: "Understanding that access alone is not enough, FuerzaDigital aims to empower Puerto Ricans with the skills needed to thrive in a digital world. We offer workshops on basic computer skills, online safety, digital entrepreneurship, and more.",
+                image: "https://placehold.co/600x400/D97706/FFFFFF?text=FuerzaDigital",
+                status: "Active & Expanding",
+                impact: "Successfully trained over 2,000 individuals in essential digital skills. 60% of participants reported increased confidence in using technology for job seeking and daily tasks.",
+                technologies: "E-learning Platforms, Interactive Workshops, Community Portals",
+                partners: "Non-Profit Organizations, Libraries, Schools, Volunteer Trainers"
+            },
+            {
+                id: 4,
+                title: "ResiliRed: Resilient Infrastructure Project",
+                shortDescription: "Hardening communication infrastructure with backup power and redundant network paths.",
+                longDescription: "Learning from past challenges, ResiliRed is focused on building a communication network that can withstand natural disasters. This includes investing in underground cabling, solar-powered backup systems for critical sites, and diverse network routes.",
+                image: "https://placehold.co/600x400/7C3AED/FFFFFF?text=ResiliRed",
+                status: "In Progress",
+                impact: "Reduced service downtime by an average of 70% during minor weather events in upgraded zones. Ensured 99.9% uptime for critical emergency service communications.",
+                technologies: "Redundant Fiber Paths, Solar Backup Systems, Network Fortification, Disaster Recovery Protocols",
+                partners: "Emergency Management Agencies, Utility Companies, Engineering Firms"
+            },
+            {
+                id: 5,
+                title: "EmpresaTech: SME Connectivity Solutions",
+                shortDescription: "Tailored high-speed internet and communication packages for Small and Medium Enterprises (SMEs).",
+                longDescription: "EmpresaTech provides affordable and robust connectivity solutions designed to meet the specific needs of Puerto Rico's SMEs. From high-speed internet to VoIP services and cloud solutions, we help local businesses grow and compete.",
+                image: "https://placehold.co/600x400/DB2777/FFFFFF?text=EmpresaTech",
+                status: "Launched",
+                impact: "Assisted over 300 SMEs in upgrading their digital infrastructure. Contributed to an average of 20% revenue growth for participating businesses through enhanced online presence.",
+                technologies: "Business Fiber Internet, VoIP, Cloud Services, Cybersecurity Solutions",
+                partners: "Chambers of Commerce, Business Development Centers, Local Banks"
+            },
+            {
+                id: 6,
+                title: "InnovAcción Hub: Tech Incubator Support",
+                shortDescription: "Providing connectivity and mentorship for local technology startups and innovators.",
+                longDescription: "The InnovAcción Hub is a Mycalla Inc. initiative to foster local innovation by providing high-speed internet, co-working spaces, and mentorship to promising tech startups in Puerto Rico. We aim to cultivate a vibrant ecosystem for technological advancement.",
+                image: "https://placehold.co/600x400/F59E0B/FFFFFF?text=InnovAcción+Hub",
+                status: "Pilot Program Launched",
+                impact: "Currently supporting 5 startups in their early stages. Provided essential infrastructure that has enabled these startups to secure initial funding and develop their products.",
+                technologies: "Gigabit Internet, Collaboration Platforms, Cloud Development Tools",
+                partners: "Venture Capitalists, Universities, Experienced Entrepreneurs"
+            }
+        ];
+
+        const projectGrid = document.getElementById('project-grid');
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalImage = document.getElementById('modalImage');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalStatus = document.getElementById('modalStatus');
+        const modalImpact = document.getElementById('modalImpact');
+        const modalTechnologies = document.getElementById('modalTechnologies');
+        const modalPartners = document.getElementById('modalPartners');
+        const closeModalBtn = document.getElementById('closeModal');
+        const closeModalFooterBtn = document.getElementById('closeModalFooter');
+
+
+        // Populate Project Grid
+        projects.forEach(project => {
+            const card = `
+                <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                    <img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-600">${project.title}</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">${project.shortDescription}</p>
+                        <button data-id="${project.id}" class="open-modal-btn mt-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 self-start">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            `;
+            projectGrid.innerHTML += card;
+        });
+
+        // Modal Functionality
+        const openModalBtns = document.querySelectorAll('.open-modal-btn');
+
+        openModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const projectId = parseInt(btn.dataset.id);
+                const project = projects.find(p => p.id === projectId);
+
+                if (project) {
+                    modalTitle.textContent = project.title;
+                    modalImage.src = project.image;
+                    modalImage.alt = project.title;
+                    modalDescription.textContent = project.longDescription;
+                    modalStatus.textContent = project.status;
+                    modalImpact.textContent = project.impact;
+                    modalTechnologies.textContent = project.technologies || "Not specified";
+                    modalPartners.textContent = project.partners || "Not specified";
+                    modal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                }
+            });
+        });
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore background scrolling
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        closeModalFooterBtn.addEventListener('click', closeModal);
+
+
+        // Close modal if backdrop is clicked
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
