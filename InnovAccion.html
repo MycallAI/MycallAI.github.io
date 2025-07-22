@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYCALLA INC. - Junior Engineer Projects</title>
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            color: #334155; /* Darker text color */
+        }
+        /* Custom styles for better visual appeal */
+        .card {
+            background-color: #ffffff;
+            border-radius: 1rem; /* More rounded corners */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            transition: transform 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
+        .link-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background-color: #3b82f6; /* Blue for buttons */
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .link-button:hover {
+            background-color: #2563eb; /* Darker blue on hover */
+        }
+        .logo-placeholder {
+            width: 100px; /* Fixed width for logos */
+            height: 100px; /* Fixed height for logos */
+            object-fit: contain; /* Ensure image fits without distortion */
+            border-radius: 0.5rem; /* Rounded corners for logos */
+            background-color: #e2e8f0; /* Light gray background for placeholders */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #475569;
+            padding: 0.5rem;
+            border: 1px solid #cbd5e1; /* Subtle border */
+        }
+        .llm-button {
+            background-color: #8b5cf6; /* Purple for LLM buttons */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .llm-button:hover {
+            background-color: #7c3aed;
+            transform: translateY(-2px);
+        }
+        .llm-button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
+
+    <!-- Header Section -->
+    <header class="w-full max-w-4xl text-center mb-12">
+        <h1 class="text-5xl font-extrabold text-gray-900 mb-4">InnovAcción Hub: Tech Incubator Support
+</h1>
+        <p class="text-xl text-gray-600 mb-8">It's time to stop playing checkers and start playing 4D chess against an AI.</p>
+        <div class="bg-blue-600 text-white p-6 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold mb-2">MYCALLA INC.</h2>
+            <p class="text-lg">Empowering and connecting the people of Puerto Rico through innovative and reliable communication solutions.</p>
+            <a href="https://mycallai.github.io" target="_blank" class="link-button mt-4">
+                Visit MYCALLA INC.
+                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Area for Projects -->
+    <main class="w-full max-w-4xl space-y-10">
+
+        <!-- Project 1: Develop a Communication Solutions Prototype for Rural Areas -->
+        <section class="card p-8">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">➤ Develop a Communication Solutions Prototype for Rural Areas</h3>
+            <p class="text-gray-700 mb-6">
+                This project directly aligns with MYCALLA INC.'s purpose to "empower and connect the people of Puerto Rico through innovative and reliable communication solutions," specifically focusing on bridging gaps. A junior engineer could contribute by researching existing low-cost communication technologies (e.g., LoRaWAN, mesh networking, or satellite internet solutions for underserved areas) and developing a basic proof-of-concept or a simulated model of how these technologies could be implemented in a rural Puerto Rican community to extend network access or provide emergency communication.
+            </p>
+
+            <button id="generate-sub-projects-1" class="llm-button flex items-center justify-center">
+                <span id="spinner-1" class="hidden loading-spinner mr-2"></span>
+                Generate Sub-Projects ✨
+            </button>
+            <div id="sub-projects-output-1" class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-gray-800 hidden"></div>
+
+            <div class="mb-6 mt-6">
+                <h4 class="text-xl font-semibold text-gray-800 mb-3">Non-Profit/Sponsor</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Puerto Rico Science, Technology & Research Trust -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://prsciencetrust.org/wp-content/uploads/2021/09/TRUST-LOGO-STD-250.svg" alt="PRSTRT Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">Puerto Rico Science, Technology & Research Trust</p>
+                        <a href="https://prsciencetrust.org/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                  
+                    <!-- RCAP Solutions -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://www.rcapsolutions.org/wp-content/uploads/2023/10/RCAPS-logo-web.png" alt="RCAP Solutions Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">RCAP Solutions</p>
+                        <a href="https://www.rcapsolutions.org/state_regions/puerto-rico/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                    <!-- Integro Foundation -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://www.integrofoundation.org/wp-content/uploads/2022/08/Integro-Logo-Primary-Color.png" alt="Integro Foundation Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">Integro Foundation</p>
+                        <a href="https://www.integrofoundation.org/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-xl font-semibold text-gray-800 mb-3">Internship Program/University Partnership</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- UPRM -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://www.uprm.edu/portada/wp-content/uploads/sites/11/2019/07/upr-mayaguez-logo.png" alt="UPRM Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">University of Puerto Rico at Mayagüez (UPRM)</p>
+                        <a href="https://www.uprm.edu/inci/erdc-erip/application/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                    <!-- Polytechnic University of Puerto Rico -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://pupr.edu/wp-content/themes/politecnica/images/LOGO_PUPR.png" alt="Polytechnic University of Puerto Rico Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">Polytechnic University of Puerto Rico</p>
+                        <a href="https://www.pupr.edu/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                    <!-- Atlantic University College -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://lh3.googleusercontent.com/G0yv0zEKXr6-dZ3RBFcQGq8qVuoGB1SSYpQ_bjqo055DxL7HP97DqBha9SbcEt_NPKfLARSCLSNvzY98awsA07KBjMVcAE1mj-Q=s0" alt="Atlantic University College Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">Atlantic University College</p>
+                        <a href="https://www.atlanticu.edu/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                    <!-- Inter-American University of Puerto Rico -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://www.inter.edu/wp-content/uploads/2023/10/universidad-interamericana-puerto-rico.png" alt="Inter-American University of Puerto Rico Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">Inter-American University of Puerto Rico</p>
+                        <a href="https://www.inter.edu/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project 2: Leverage Juniors for Internal ROI: Build a "Network Health Dashboard" Internal Tool -->
+        <section class="card p-8">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">➤ Leverage Juniors for Internal ROI: Build a "Network Health Dashboard" Internal Tool</h3>
+            <p class="text-gray-700 mb-6">
+                Instead of a broad external project, a junior engineer can focus on an internal tool. This project involves developing a dashboard that monitors key performance indicators (KPIs) of MYCALLA INC.'s communication network. The junior engineer can utilize their programming skills (e.g., Python for data analysis, as per your background) to collect, process, and visualize data related to network uptime, latency, bandwidth usage, and user experience. This provides real-world experience in data management and system monitoring, while giving the company direct value by offering insights into network performance and identifying areas for improvement.
+            </p>
+
+            <button id="generate-sub-projects-2" class="llm-button flex items-center justify-center">
+                <span id="spinner-2" class="hidden loading-spinner mr-2"></span>
+                Generate Sub-Projects ✨
+            </button>
+            <div id="sub-projects-output-2" class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-gray-800 hidden"></div>
+
+            <div class="mb-6 mt-6">
+                <h4 class="text-xl font-semibold text-gray-800 mb-3">Non-Profit/Sponsor (for internship support)</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Puerto Rico Science, Technology & Research Trust -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://prsciencetrust.org/wp-content/uploads/2021/09/TRUST-LOGO-STD-250.svg" alt="PRSTRT Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">Puerto Rico Science, Technology & Research Trust</p>
+                        <a href="https://prsciencetrust.org/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                    <!-- Platform for Social Impact -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT3n_zH808ouDgdB37ox-icbGtn1Fx4_zlyosyRkc5y9csGJGkf" alt="Platform for Social Impact Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">Platform for Social Impact (PSI)</p>
+                        <a href="https://impactpr.co/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-xl font-semibold text-gray-800 mb-3">Internship Program/University Partnership</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Evertec -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://www.evertecinc.com/wp-content/uploads/2021/05/evertec-logo-footer.png" alt="Evertec Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">Evertec</p>
+                        <a href="https://www.evertecinc.com/en/join-our-team/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                    <!-- University of Puerto Rico (Various Campuses) -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/University_of_Puerto_Rico_seal.svg/1200px-University_of_Puerto_Rico_seal.svg.png" alt="UPR Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">University of Puerto Rico (Various Campuses)</p>
+                        <a href="https://www.upr.edu/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project 3: Build a Real Talent Pipeline: Document Best Practices and Create Training Modules -->
+        <section class="card p-8">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">➤ Build a Real Talent Pipeline: Document Best Practices and Create Training Modules</h3>
+            <p class="text-gray-700 mb-6">
+                While working on the network health dashboard or communication prototype, the junior engineer can be tasked with documenting the development process, coding standards, and best practices. This output can then be used to create internal training modules for future junior hires or interns, thereby contributing to MYCALLA INC.'s talent pipeline. This allows the company to "stop waiting for talent to fall from the sky" and instead build an effective onboarding process, attracting and developing the "best talent on the island."
+            </p>
+
+            <div class="mb-6">
+                <h4 class="text-xl font-semibold text-gray-800 mb-3">Generate Training Module Outline ✨</h4>
+                <input type="text" id="training-topic-input" class="w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., LoRaWAN Basics, Network Monitoring with Python">
+                <button id="generate-training-outline" class="llm-button flex items-center justify-center">
+                    <span id="spinner-3" class="hidden loading-spinner mr-2"></span>
+                    Generate Outline ✨
+                </button>
+                <div id="training-outline-output" class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-gray-800 hidden whitespace-pre-wrap"></div>
+            </div>
+
+            <div class="mb-6 mt-6">
+                <h4 class="text-xl font-semibold text-gray-800 mb-3">Non-Profit/Sponsor (for workforce development)</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Puerto Rico Science, Technology & Research Trust -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://prsciencetrust.org/wp-content/uploads/2021/09/TRUST-LOGO-STD-250.svg" alt="PRSTRT Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">Puerto Rico Science, Technology & Research Trust</p>
+                        <a href="https://prsciencetrust.org/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                
+                    <!-- Platform for Social Impact -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT3n_zH808ouDgdB37ox-icbGtn1Fx4_zlyosyRkc5y9csGJGkf" alt="Platform for Social Impact Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">Platform for Social Impact (PSI)</p>
+                        <a href="https://impactpr.co/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-xl font-semibold text-gray-800 mb-3">Internship Program/University Partnership</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- University of Puerto Rico (All Campuses) -->
+                    <div class="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/University_of_Puerto_Rico_seal.svg/1200px-University_of_Puerto_Rico_seal.svg.png" alt="UPR Logo" class="logo-placeholder mb-2">
+                        <p class="font-medium text-gray-900 mb-2">University of Puerto Rico (All Campuses)</p>
+                        <a href="https://www.upr.edu/" target="_blank" class="link-button text-sm">
+                            Visit Website
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0l-7 7m7-7v6"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="w-full max-w-4xl text-center mt-12 py-6 text-gray-500 text-sm">
+        <p>&copy; 2025 MYCALLA INC. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to make API call to Gemini
+        async function callGeminiAPI(prompt, outputElementId, spinnerId) {
+            const outputElement = document.getElementById(outputElementId);
+            const spinner = document.getElementById(spinnerId);
+            const button = spinner.parentElement; // Get the parent button element
+
+            outputElement.classList.add('hidden'); // Hide previous output
+            outputElement.innerHTML = ''; // Clear previous output
+            spinner.classList.remove('hidden'); // Show spinner
+            button.disabled = true; // Disable button during API call
+
+            try {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will automatically provide the API key
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputElement.innerHTML = `<pre class="whitespace-pre-wrap">${text}</pre>`; // Use pre-wrap for formatting
+                    outputElement.classList.remove('hidden');
+                } else {
+                    outputElement.innerHTML = '<p class="text-red-600">Error: Could not get a response from the AI.</p>';
+                    outputElement.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                outputElement.innerHTML = `<p class="text-red-600">Error: Failed to connect to AI. Please try again.</p>`;
+                outputElement.classList.remove('hidden');
+            } finally {
+                spinner.classList.add('hidden'); // Hide spinner
+                button.disabled = false; // Re-enable button
+            }
+        }
+
+        // Event listener for Project 1: Generate Sub-Projects
+        document.getElementById('generate-sub-projects-1').addEventListener('click', () => {
+            const projectDescription = "Develop a Communication Solutions Prototype for Rural Areas. This project directly aligns with MYCALLA INC.'s purpose to 'empower and connect the people of Puerto Rico through innovative and reliable communication solutions,' specifically focusing on bridging gaps. A junior engineer could contribute by researching existing low-cost communication technologies (e.g., LoRaWAN, mesh networking, or satellite internet solutions for underserved areas) and developing a basic proof-of-concept or a simulated model of how these technologies could be implemented in a rural Puerto Rican community to extend network access or provide emergency communication.";
+            const prompt = `Given the following project description for a junior engineer, generate 3-5 distinct and actionable sub-project ideas or specific tasks. Focus on tasks suitable for a junior engineer, involving research, prototyping, or basic development. Format the output as a bulleted list.\n\nProject Description: ${projectDescription}`;
+            callGeminiAPI(prompt, 'sub-projects-output-1', 'spinner-1');
+        });
+
+        // Event listener for Project 2: Generate Sub-Projects
+        document.getElementById('generate-sub-projects-2').addEventListener('click', () => {
+            const projectDescription = "Leverage Juniors for Internal ROI: Build a 'Network Health Dashboard' Internal Tool. This project involves developing a dashboard that monitors key performance indicators (KPIs) of MYCALLA INC.'s communication network. The junior engineer can utilize their programming skills (e.g., Python for data analysis, as per your background) to collect, process, and visualize data related to network uptime, latency, bandwidth usage, and user experience. This provides real-world experience in data management and system monitoring, while giving the company direct value by offering insights into network performance and identifying areas for improvement.";
+            const prompt = `Given the following project description for a junior engineer, generate 3-5 distinct and actionable sub-project ideas or specific tasks. Focus on tasks suitable for a junior engineer, involving data collection, visualization, or basic dashboard development. Format the output as a bulleted list.\n\nProject Description: ${projectDescription}`;
+            callGeminiAPI(prompt, 'sub-projects-output-2', 'spinner-2');
+        });
+
+        // Event listener for Project 3: Generate Training Outline
+        document.getElementById('generate-training-outline').addEventListener('click', () => {
+            const topic = document.getElementById('training-topic-input').value;
+            if (!topic) {
+                const outputElement = document.getElementById('training-outline-output');
+                outputElement.innerHTML = '<p class="text-red-600">Please enter a topic for the training module.</p>';
+                outputElement.classList.remove('hidden');
+                return;
+            }
+            const prompt = `Generate a detailed outline for a training module on the topic: "${topic}". The outline should include a clear introduction, main sections with sub-points, and a conclusion. Aim for 4-6 main sections.`;
+            callGeminiAPI(prompt, 'training-outline-output', 'spinner-3');
+        });
+
+        // Update logo placeholders with actual image URLs
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoMap = {
+                'PRSTRT Logo': 'https://prsciencetrust.org/wp-content/uploads/2021/09/TRUST-LOGO-STD-250.svg',
+                'RCAP Solutions Logo': 'https://www.rcapsolutions.org/wp-content/themes/elevationweb/assets/images/logo-footer.svg',
+                'Integro Foundation Logo': 'https://static.wixstatic.com/media/a95750_fb8d889139fe44c6b7c964d52e000447~mv2.png/v1/fill/w_340,h_112,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Untitled%20(864%20%C3%97%20284%20px).png',
+                'UPRM Logo': 'https://www.uprm.edu/portada/wp-content/uploads/sites/24/2016/04/upr_rum.jpg',
+                'Polytechnic PR Logo': 'https://pupr.edu/wp-content/themes/politecnica/images/LOGO_PUPR.png',
+                'Atlantic UC Logo': 'https://lh3.googleusercontent.com/G0yv0zEKXr6-dZ3RBFcQGq8qVuoGB1SSYpQ_bjqo055DxL7HP97DqBha9SbcEt_NPKfLARSCLSNvzY98awsA07KBjMVcAE1mj-Q=s0',
+                'Inter-American U Logo': 'https://www.inter.edu/wp-content/uploads/2023/10/universidad-interamericana-puerto-rico.png',
+                'Evertec Logo': 'https://www.evertecinc.com/wp-content/uploads/2020/07/logo-evertec-footer.png',
+                'UPR Logo': 'https://www.upr.edu/wp-content/uploads/2021/05/LOGO-UPR-BLANCO-400x396.png',
+                'PSI Logo': 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT3n_zH808ouDgdB37ox-icbGtn1Fx4_zlyosyRkc5y9csGJGkf'
+            };
+
+            document.querySelectorAll('.logo-placeholder').forEach(img => {
+                const altText = img.alt;
+                if (logoMap[altText]) {
+                    img.src = logoMap[altText];
+                }
+            });
+        });
+    </script>
+</body>
+</html>
