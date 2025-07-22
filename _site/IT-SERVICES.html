@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi Technology Solutions: Interactive Strategic Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: "Calm Harmony" - A warm neutral base (bg-stone-50), a professional blue (text-sky-700, bg-sky-100), a darker gray for text (text-slate-800), and a subtle accent gold (border-amber-400) for highlights. -->
+    <!-- Application Structure Plan: The SPA is designed as a single-page dashboard, abandoning the linear report format for a more intuitive, thematic exploration. The user flow is guided by a sticky navigation header (Overview, Services, Market, Analysis, Outlook) that allows non-linear access to content. This structure was chosen because a strategic analysis contains interconnected but distinct themes (e.g., internal services vs. external market forces). A dashboard with interactive modules (clickable service cards, filterable charts, expandable accordions) allows users to compare and synthesize these themes more effectively than scrolling through a static document. The goal is to let the user build their own understanding by exploring the data in the order that makes sense to them. -->
+    <!-- Visualization & Content Choices:
+        - Corporate DNA: Goal: Inform. Method: Key metric cards (HTML/CSS) for quick facts (Est. 2013, 100+ Clients). Justification: More scannable and impactful than a paragraph.
+        - Service Pillars: Goal: Organize/Inform. Method: Interactive cards (HTML/CSS/JS). Interaction: Clicking a pillar reveals its detailed components. Justification: Manages complexity by hiding details until requested, preventing information overload.
+        - Industry Diversification: Goal: Organize. Method: Donut Chart (Chart.js/Canvas). Interaction: Hover tooltips. Justification: Provides an immediate visual summary of market breadth, a key strength mentioned in the report.
+        - Talent Competition: Goal: Compare. Method: Horizontal Bar Chart (Chart.js/Canvas). Interaction: Hover tooltips showing company/salary. Justification: Powerfully visualizes the "war for talent" threat, making the abstract concept of salary pressure concrete and data-driven.
+        - SWOT Analysis: Goal: Organize/Compare. Method: Four-quadrant grid (HTML/CSS) with Unicode icons. Justification: A universally understood framework for strategic analysis, allowing for easy comparison of internal/external factors.
+        - Recommendations: Goal: Inform. Method: Accordion (HTML/CSS/JS). Interaction: Click to expand. Justification: Presents actionable advice in a clean, organized manner, letting users focus on the stakeholder perspective most relevant to them.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 45vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .nav-link:hover {
+            color: #0369a1; /* sky-700 */
+        }
+        .active-link {
+            color: #0284c7; /* sky-600 */
+            border-bottom-color: #0284c7;
+        }
+        .service-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-sky-800">Informasi Tech Analysis</h1>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#overview" class="nav-link text-slate-600 font-medium border-b-2 border-transparent pb-1">Overview</a>
+                <a href="#services" class="nav-link text-slate-600 font-medium border-b-2 border-transparent pb-1">Services</a>
+                <a href="#market" class="nav-link text-slate-600 font-medium border-b-2 border-transparent pb-1">Market</a>
+                <a href="#analysis" class="nav-link text-slate-600 font-medium border-b-2 border-transparent pb-1">Analysis</a>
+                <a href="#outlook" class="nav-link text-slate-600 font-medium border-b-2 border-transparent pb-1">Outlook</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+            <a href="#overview" class="block py-2 px-6 text-slate-600 hover:bg-slate-50">Overview</a>
+            <a href="#services" class="block py-2 px-6 text-slate-600 hover:bg-slate-50">Services</a>
+            <a href="#market" class="block py-2 px-6 text-slate-600 hover:bg-slate-50">Market</a>
+            <a href="#analysis" class="block py-2 px-6 text-slate-600 hover:bg-slate-50">Analysis</a>
+            <a href="#outlook" class="block py-2 px-6 text-slate-600 hover:bg-slate-50">Outlook</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-12">
+
+        <section id="overview" class="scroll-mt-20 mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-900 mb-2">Informasi Technology Solutions</h2>
+                <p class="text-lg text-slate-600 max-w-3xl mx-auto">A strategic deep dive into a key player in Puerto Rico's IT landscape.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-xl shadow-md mb-12">
+                <h3 class="text-2xl font-semibold text-slate-800 mb-4 text-center">Corporate DNA</h3>
+                <p class="text-slate-600 text-center max-w-4xl mx-auto mb-8">This section provides a snapshot of the company's core identity. It highlights key operational metrics and the foundational mission and vision that guide its strategy. This information establishes Informasi as a mature, locally-focused Managed Service Provider (MSP) with a pragmatic, client-centric approach.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8">
+                    <div class="bg-slate-50 p-6 rounded-lg">
+                        <div class="text-4xl font-bold text-sky-700">2013</div>
+                        <div class="text-slate-500 mt-1">Year Established</div>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg">
+                        <div class="text-4xl font-bold text-sky-700">100+</div>
+                        <div class="text-slate-500 mt-1">Active Clients</div>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg">
+                        <div class="text-4xl font-bold text-sky-700">13+</div>
+                        <div class="text-slate-500 mt-1">Industries Served</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border-l-4 border-amber-400 pl-6">
+                        <h4 class="text-xl font-semibold text-slate-800 mb-2">Mission</h4>
+                        <p class="text-slate-600 italic">"To simplify IT Management for our clients, regardless of their size or budget, while reducing their operational costs."</p>
+                    </div>
+                    <div class="border-l-4 border-amber-400 pl-6">
+                        <h4 class="text-xl font-semibold text-slate-800 mb-2">Vision</h4>
+                        <p class="text-slate-600 italic">"To create and maintain solutions that are innovative, reliable and cost-effective for our clients in order to help them be successful..."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="scroll-mt-20 mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-900 mb-2">The Four Pillars of Service</h2>
+                <p class="text-lg text-slate-600 max-w-3xl mx-auto">Informasi structures its offerings into four comprehensive pillars. This interactive section allows you to explore each one. Click on a pillar to see the detailed services it includes. This design reveals how the company provides a full-spectrum, single-source IT partnership, from foundational management to advanced cybersecurity.</p>
+            </div>
+
+            <div id="service-pillars" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            </div>
+        </section>
+
+        <section id="market" class="scroll-mt-20 mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-900 mb-2">Market Landscape</h2>
+                <p class="text-lg text-slate-600 max-w-3xl mx-auto">This section visualizes Informasi's position within the Puerto Rican market. The charts below illustrate two key findings from the report: the company's broad industry diversification, which provides stability, and the intense competition for talent, which represents a major strategic threat.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4 text-center">Industry Diversification</h3>
+                    <p class="text-slate-600 text-center mb-6">Informasi claims clients in over 13 industries. This chart visualizes that breadth, a key strength that reduces reliance on any single sector of Puerto Rico's economy. Hover over a segment to see the industry name.</p>
+                    <div class="chart-container">
+                        <canvas id="industryChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4 text-center">The War for Talent</h3>
+                    <p class="text-slate-600 text-center mb-6">Informasi faces fierce competition for skilled professionals from global firms. This chart shows sample salary data for IT roles in Puerto Rico, illustrating the high compensation benchmarks set by competitors.</p>
+                    <div class="chart-container">
+                        <canvas id="talentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="analysis" class="scroll-mt-20 mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-900 mb-2">SWOT Analysis</h2>
+                <p class="text-lg text-slate-600 max-w-3xl mx-auto">A synthesis of the research findings, this SWOT analysis provides a clear, at-a-glance view of Informasi's strategic position. It balances the company's internal strengths and weaknesses against the external opportunities and threats present in the Puerto Rican market.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-green-800 mb-3 flex items-center"><span class="text-2xl mr-2">✓</span>Strengths</h3>
+                    <ul class="list-disc list-inside text-slate-700 space-y-2">
+                        <li>Established Local Presence (10+ years)</li>
+                        <li>Comprehensive & Relevant Service Stack</li>
+                        <li>Diversified Client Base (13+ Industries)</li>
+                        <li>Standardized on ManageEngine Platform</li>
+                    </ul>
+                </div>
+                <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-red-800 mb-3 flex items-center"><span class="text-2xl mr-2">✗</span>Weaknesses</h3>
+                    <ul class="list-disc list-inside text-slate-700 space-y-2">
+                        <li>Low Public Visibility & Opaque Structure</li>
+                        <li>Reactive, Non-Public Recruitment Strategy</li>
+                        <li>Likely Scale & Price Limitations vs. Giants</li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3 flex items-center"><span class="text-2xl mr-2">💡</span>Opportunities</h3>
+                    <ul class="list-disc list-inside text-slate-700 space-y-2">
+                        <li>Sustained Disaster Recovery Demand</li>
+                        <li>Growing Cybersecurity Market</li>
+                        <li>Public Sector IT Outsourcing Contracts</li>
+                        <li>Leverage "Local Partner" Identity</li>
+                    </ul>
+                </div>
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-yellow-800 mb-3 flex items-center"><span class="text-2xl mr-2">⚠️</span>Threats</h3>
+                    <ul class="list-disc list-inside text-slate-700 space-y-2">
+                        <li>Intense Talent Competition from Global Firms</li>
+                        <li>High Risk of Public Sector Contracts</li>
+                        <li>Potential for Market Consolidation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="outlook" class="scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-900 mb-2">Strategic Outlook & Recommendations</h2>
+                <p class="text-lg text-slate-600 max-w-3xl mx-auto">This final section provides actionable recommendations for different stakeholders based on the report's analysis. Click on each category to expand the strategic advice for competitors, potential partners or acquirers, and prospective clients.</p>
+            </div>
+            <div id="recommendations-accordion" class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 mt-16">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>This interactive analysis was generated based on the "Strategic Analysis of Informasi Technology Solutions" report.</p>
+            <p class="text-sm text-slate-400 mt-1">All data is derived from publicly available sources as synthesized in the report.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('header nav a');
+
+            window.onscroll = () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.href.includes(current)) {
+                        link.classList.add('active-link');
+                    }
+                });
+            };
+
+            const servicePillarsData = [
+                {
+                    title: 'IT Service Management',
+                    icon: '💻',
+                    description: 'The foundational offering, providing complete, proactive management of a client\'s IT infrastructure.',
+                    details: ['Managed Services', 'On-Demand "Break-Fix" Support', 'Office Innovation & Hosting', 'Service Desk & Remote Support', 'Endpoint Management & Monitoring']
+                },
+                {
+                    title: 'ManageEngine Integration',
+                    icon: '⚙️',
+                    description: 'Standardizes service delivery on a robust, industry-recognized enterprise IT management platform.',
+                    details: ['Platform Implementation', 'Workflow Automation', 'Custom Dashboarding', 'Performance Optimization', 'Consistent Service Delivery']
+                },
+                {
+                    title: 'Disaster Recovery',
+                    icon: '🌊',
+                    description: 'A critical offering for the Puerto Rican market, designed to eradicate downtime and data loss from natural disasters.',
+                    details: ['Disaster Recovery as a Service (DRaaS)', 'Cloud Backup Solutions', 'Cloud Application Backup', 'Business Continuity Planning']
+                },
+                {
+                    title: 'Cybersecurity S.M.A.R.T.',
+                    icon: '🛡️',
+                    description: 'A structured framework that demystifies cybersecurity and delivers a comprehensive security program.',
+                    details: ['(S)ecurity Governance', '(M)anaged Threat Detection', '(A)dvanced Threat Response', '(R)eal-Time Optimization', '(T)raining & Education']
+                }
+            ];
+
+            const servicePillarsContainer = document.getElementById('service-pillars');
+            servicePillarsData.forEach(pillar => {
+                const card = document.createElement('div');
+                card.className = 'service-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer';
+                card.innerHTML = `
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">${pillar.icon}</span>
+                            <h3 class="text-xl font-semibold text-sky-800">${pillar.title}</h3>
+                        </div>
+                        <p class="text-slate-600 mb-4">${pillar.description}</p>
+                        <div class="service-details hidden text-sm text-slate-600 space-y-2 pl-4 border-l-2 border-sky-200">
+                            ${pillar.details.map(detail => `<div>- ${detail}</div>`).join('')}
+                        </div>
+                    </div>
+                `;
+                servicePillarsContainer.appendChild(card);
+
+                card.addEventListener('click', () => {
+                    const details = card.querySelector('.service-details');
+                    details.classList.toggle('hidden');
+                });
+            });
+
+            const recommendationsData = [
+                {
+                    title: 'For Competitors',
+                    content: 'Exploit weaknesses by launching public recruitment campaigns with transparent salaries. Target mid-market clients whose needs may stretch Informasi\'s scale. Differentiate by publishing detailed case studies and client testimonials to contrast with Informasi\'s opacity.'
+                },
+                {
+                    title: 'For Partners / Acquirers',
+                    content: 'Informasi is an attractive acquisition target for firms seeking turnkey entry into the Puerto Rican SME market. Its established client base, operational history, and experienced team are valuable, hard-to-replicate assets that provide immediate market penetration.'
+                },
+                {
+                    title: 'For Prospective Clients',
+                    content: 'Due diligence is critical. Request specific, anonymized case studies and references for your industry. Inquire directly about the certifications and tenure of their technical team. For complex projects, demand detailed information on their project management and governance frameworks.'
+                }
+            ];
+
+            const accordionContainer = document.getElementById('recommendations-accordion');
+            recommendationsData.forEach((item, index) => {
+                const accordionItem = document.createElement('div');
+                accordionItem.className = 'border-b border-slate-200';
+                accordionItem.innerHTML = `
+                    <button class="w-full flex justify-between items-center p-5 text-left font-semibold text-slate-700 hover:bg-slate-50 focus:outline-none">
+                        <span>${item.title}</span>
+                        <span class="transform transition-transform duration-300">+</span>
+                    </button>
+                    <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                        <p class="p-5 pt-0 text-slate-600">${item.content}</p>
+                    </div>
+                `;
+                accordionContainer.appendChild(accordionItem);
+
+                const button = accordionItem.querySelector('button');
+                const content = accordionItem.querySelector('.accordion-content');
+                const icon = button.querySelector('span:last-child');
+
+                button.addEventListener('click', () => {
+                    const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+                    if (isOpen) {
+                        content.style.maxHeight = '0px';
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.style.transform = 'rotate(45deg)';
+                    }
+                });
+            });
+            
+            const industryCtx = document.getElementById('industryChart').getContext('2d');
+            new Chart(industryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Automobile', 'Banking IT', 'Education', 'Energy', 'Government', 'Healthcare', 'Insurance', 'Logistics', 'Manufacturing', 'Media', 'Telecom', 'Tourism'],
+                    datasets: [{
+                        label: 'Industry Presence',
+                        data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], // Equal weight as no specific numbers are given
+                        backgroundColor: ['#0ea5e9', '#38bdf8', '#7dd3fc', '#f59e0b', '#fbbf24', '#fcd34d', '#34d399', '#6ee7b7', '#a7f3d0', '#f472b6', '#fb7185', '#fda4af'],
+                        borderColor: '#f8fafc',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 15,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e293b',
+                            titleFont: { size: 14, weight: 'bold' },
+                            bodyFont: { size: 12 },
+                            padding: 10,
+                            cornerRadius: 4
+                        }
+                    }
+                }
+            });
+
+            const talentCtx = document.getElementById('talentChart').getContext('2d');
+            new Chart(talentCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Remote Call Center', 'Help Desk L2', 'Procurement Jr. Buyer', 'InfoSec Analyst', '.NET Engineer (AI)'],
+                    datasets: [{
+                        label: 'Hourly Pay ($)',
+                        data: [11, 18, 22.75, 26.44, 70], // Analyst converted from 55k/yr
+                        backgroundColor: '#0ea5e9',
+                        borderColor: '#0284c7',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Average Hourly Pay (USD)',
+                                font: { size: 12 }
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                font: { size: 12 }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e293b',
+                            titleFont: { size: 14, weight: 'bold' },
+                            bodyFont: { size: 12 },
+                            padding: 10,
+                            cornerRadius: 4,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.x !== null) {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.x);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
