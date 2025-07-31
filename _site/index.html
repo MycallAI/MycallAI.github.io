@@ -45,6 +45,13 @@
             background: #555;
         }
     </style>
+    <script type="speculationrules">
+  {
+    "prerender": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }],
+    "prefetch": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }]
+  }
+</script>
+
 </head>
 <body class="bg-gray-100 text-gray-800">
 
@@ -300,12 +307,6 @@
         });
 
     </script>
- <script type="speculationrules">
-  {
-    "prerender": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }],
-    "prefetch": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }]
-  }
-</script>
-
+    
 </body>
 </html>
